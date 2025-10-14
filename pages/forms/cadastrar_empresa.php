@@ -14,21 +14,20 @@ if (isset($_GET["error"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastrar empresa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Login</h1>
+    <h1>Cadastrar empresa:</h1>
 
-    <form action="/avaliacoes/src/forms/log_user.php" class="form" method="post">
-        <label for="email">Email: <input id="email" name="email" type="email"></label>
-        <label for="senha">Senha: <input id="senha" name="senha" type="password"></label>
+    <form action="/avaliacao/src/forms/log_user.php" class="form" method="post">
+        <label for="nome">Nome: <input id="nome" name="nome" type="text"></label>
         <button class="botao" type="submit">Enviar</button>
     </form>
 
     <?php if ($with_error): ?>
-        <p class="error-msg">Usuário ou senha errados</p>
+        <p class="error-msg">Erro: </p>
     <?php endif; ?>
 </body>
 

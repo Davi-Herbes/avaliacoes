@@ -10,7 +10,7 @@ class Empresa
     public string $idUsuario;
     public string $idEndereco;
 
-    public function __construct(public string $nome)
+    public function __construct(public string $nome = "")
     {
         session_start();
         $usuario = $_SESSION["user"];

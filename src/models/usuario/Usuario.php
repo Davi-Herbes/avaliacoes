@@ -1,15 +1,15 @@
 <?php
 
-require_once __DIR__ . "\..\config\db\MySQL.php";
+require_once __DIR__ . "\..\..\config\db\MySQL.php";
 
 class Usuario
 {
 
     public int $id;
 
-    public function __construct(public string $email, public string $senha, public string $nome, public string $foto = "") {}
+    public function __construct(public string $email = "", public string $senha = "", public string $nome = "", public string $foto = "") {}
 
-    public function save(): bool
+    public function save()
     {
         $conexao = new MySQL();
         $this->senha = password_hash($this->senha, PASSWORD_BCRYPT);

@@ -14,21 +14,21 @@ if (isset($_GET["error"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastrar avaliação</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Login</h1>
+    <h1>Avaliar</h1>
 
-    <form action="/avaliacoes/src/forms/log_user.php" class="form" method="post">
-        <label for="email">Email: <input id="email" name="email" type="email"></label>
-        <label for="senha">Senha: <input id="senha" name="senha" type="password"></label>
+    <form action="/avaliacao/src/forms/cadastrar_avaliacao.php" class="form" method="post">
+        <label for="nota">Nota: <input id="nota" name="nota" type="number"></label>
+        <label for="comentario">Comentário: <input id="comentario" name="comentario" type="password"></label>
         <button class="botao" type="submit">Enviar</button>
     </form>
 
     <?php if ($with_error): ?>
-        <p class="error-msg">Usuário ou senha errados</p>
+        <p class="error-msg">Erro ao cadastrar avaliação!</p>
     <?php endif; ?>
 </body>
 

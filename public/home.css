@@ -1,0 +1,29 @@
+@import "/avaliacoes/public/global.css";
+
+.page {
+  height: 100vh;
+  color: #fff;
+  width: 100%;
+}
+
+.home-header {
+  background: #000;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.home-section {
+  background: linear-gradient(45deg, #ffffff, #b8bcc0);
+  height: 90vh;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+  color: #fff;
+text-decoration: none;
+}

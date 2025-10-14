@@ -1,47 +1,46 @@
 <?php
 
-require_once __DIR__ . "\Usuario.php";
 require_once __DIR__ . "\..\config\bd\MySQL.php";
 
-class Avaliacao
+class Endereco
 {
 
     public int $id;
-    public int $idUsuario;
 
-    public function __construct(public string $nota,  public string $comentario, public string $idProduto)
-    {
-        session_start();
-        $usuario = $_SESSION["user"];
-        $this->idUsuario = $usuario["id"];
-    }
+    public function __construct(
+        public string $rua = "",
+        public int $numero = 0,
+        public string $cidade = "",
+        public string $cep = "",
+        public string $estado = "",
+        public string $pais = ""
+    ) {}
 
     public function save(): bool
     {
         $conexao = new MySQL();
         if (isset($this->id)) {
-            $sql = "UPDATE avaliacao SET idUsuario = '{$this->idUsuario}' , nota = '{$this->nota}', comentario = '{$this->comentario}', idProduto = '{$this->idProduto}' WHERE id = {$this->id}";
+            $sql = "UPDATE endereco SET rua = '{$this->rua}', numero = '{$this->numero}', cidade = '{$this->cidade}', cep = '{$this->cep}', estado = '{$this->estado}', pais = '{$this->pais}' WHERE id = {$this->id}";
         } else {
-            $sql = "INSERT INTO avaliacao (idUsuario, nota, comentario, idProduto)
-             VALUES ('{$this->idUsuario}','{$this->nota}', '{$this->comentario}', '{$this->idProduto}')";
+            $sql = "INSERT INTO endereco (rua, numero, cidade, cep, estado, pais) VALUES ('{$this->rua}','{$this->numero}','{$this->cidade}' ,'{$this->cep}','{$this->estado}', '{$this->pais}')";
         }
         return $conexao->executa($sql);
     }
 
-    public static function find($id): Avaliacao
+    public static function find($id): Endereco
     {
         $conexao = new MySQL();
-        $sql = "SELECT * FROM avaliacao WHERE id = {$id}";
+        $sql = "SELECT * FROM endereco WHERE id = {$id}";
         $resultado = $conexao->consulta($sql);
-        $u = new Avaliacao($resultado[0]['idUsuario'], $resultado[0]['nota'], $resultado[0]['comentario'], $resultado[0]['idProduto']);
-        $u->id = $resultado[0]['idUsuario'];
+        $u = new Endereco($resultado[0]['rua'], $resultado[0]['numero'], $resultado[0]['cidade'], $resultado[0]['cep'], $resultado[0]['rua'], $resultado[0]['numero']);
+        $u->id = $resultado[0]['id'];
         return $u;
     }
 
     public static function delete($id)
     {
         $conexao = new MySQL();
-        $sql = "DELETE FROM avaliacao WHERE id = {$id}";
+        $sql = "DELETE FROM endereco WHERE id = {$id}";
         $resultado = $conexao->executa($sql);
         return $resultado;
     }

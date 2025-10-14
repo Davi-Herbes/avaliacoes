@@ -6,7 +6,7 @@ class Produto
 {
     public int $id;
 
-    public function __construct(public string $nome, public string $descricao, public int $idEmpresa) {}
+    public function __construct(public string $nome = "", public string $descricao = "", public int $idEmpresa = 0) {}
 
     public function save(): bool
     {

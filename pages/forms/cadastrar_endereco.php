@@ -21,9 +21,13 @@ if (isset($_GET["error"])) {
 <body>
     <h1>Login</h1>
 
-    <form action="/avaliacoes/src/forms/log_user.php" class="form" method="post">
+    <form action="/avaliacao/src/forms/log_user.php" class="form" method="post">
         <label for="email">Email: <input id="email" name="email" type="email"></label>
         <label for="senha">Senha: <input id="senha" name="senha" type="password"></label>
+        <label for="nome">Nome: <input id="nome" name="nome" type="text"></label>
+        <label for="nome">Nome: <input id="nome" name="nome" type="text"></label>
+        <label for="nome">Nome: <input id="nome" name="nome" type="text"></label>
+        
         <button class="botao" type="submit">Enviar</button>
     </form>
 
