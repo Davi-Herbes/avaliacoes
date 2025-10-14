@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/src/utils/user_required.php";
+require_once __DIR__ . "/../../src/utils/user_required.php";
 user_required();
 
 $user = $_SESSION["user"];
@@ -7,12 +7,12 @@ $user = $_SESSION["user"];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Buscar</title>
   <link rel="stylesheet" href="/avaliacoes/public/home.css">
 </head>
 
@@ -35,7 +35,7 @@ $user = $_SESSION["user"];
       <aside class="home-aside">
         <nav>
           <ul>
-            <li class="selected">
+            <li>
               <a href="/avaliacoes/">
                 <figure>
                   <img src="/avaliacoes/public/images/home-icon.svg" alt="Ícone seguindo">
@@ -43,7 +43,7 @@ $user = $_SESSION["user"];
                 </figure>
               </a>
             </li>
-            <li>
+            <li class="selected">
               <a href="/avaliacoes/pages/buscar/">
                 <figure>
                   <img src="/avaliacoes/public/images/search.svg" alt="Ícone busca">
@@ -63,7 +63,7 @@ $user = $_SESSION["user"];
         </nav>
       </aside>
       <main class="home-main">
-        <h1>Seguindo</h1>
+        <h1>Buscar</h1>
       </main>
     </section>
   </div>

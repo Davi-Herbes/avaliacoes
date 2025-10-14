@@ -1,52 +1,51 @@
 @import "/avaliacoes/public/global.css";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- background: linear-gradient(135deg, #2f2f2f, #6c757d); 
- font-family: "Poppins", sans-serif;
- font-size: large;
+  background: linear-gradient(135deg, #2f2f2f, #6c757d);
+  font-family: "Poppins", sans-serif;
+  font-size: large;
 }
-h1{
-    color: white;
+
+h1 {
+  color: white;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   width: 40vh;
-  height: 25vh;
+  min-height: 25vh;
   gap: 12px 10px;
   align-items: center;
-  border: 1px solid #555; 
-  padding: 25px 35px;
+  border: 1px solid #555;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(100, 100, 100, 0.8); 
-  background-color: #424040; 
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.8);
+  background-color: #424040;
   justify-content: center;
+  padding: 10px;
 }
 
 label {
   font-size: 16px;
-  color: #ddd; 
+  color: #ddd;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 80%;
+}
 
-  }
-
-input {
+.form label input {
   padding: 6px;
   border: 1px solid #888;
   border-radius: 3px;
-  width: 200px;
   background-color: #333;
-  color: #eee; 
-  height: 2vh;
-  width: 20vw ;
+  color: #eee;
+  height: 30px;
 }
 
 .botao {
@@ -60,17 +59,17 @@ input {
   color: #ddd;
   font-weight: 600;
   transition: background-color 0.3s ease;
-height: 4vh;
- width: 20vw
-  
+  height: 30px;
+
+  width: 80%;
 }
 
 .botao:hover {
-  background-color: #495057; 
+  background-color: #495057;
 }
 
 .error-msg {
-  color: #e55353; 
+  color: #e55353;
   margin-top: 15px;
   font-size: 14px;
 }
