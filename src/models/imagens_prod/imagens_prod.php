@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "\..\config\bd\MySQL.php";
 
-class imagens_prod
+class ImagensProd
 {
 
     public int $id;

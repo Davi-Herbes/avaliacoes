@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../../src/utils/user_required.php";
+require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
+
 user_required();
 
 $user = $_SESSION["user"];
@@ -62,8 +64,19 @@ $user = $_SESSION["user"];
           </ul>
         </nav>
       </aside>
+      <?php
+      $empresa = new Empresa("Empresa x");
+      $empresa->idEndereco = 1;
+      $empresa->id = 1;
+
+
+      ?>
       <main class="home-main">
-        <h1>Buscar</h1>
+        <div class="empresa-card">
+          <h2 class="card-title">
+            <?php echo $empresa->nome ?>
+          </h2>
+        </div>
       </main>
     </section>
   </div>

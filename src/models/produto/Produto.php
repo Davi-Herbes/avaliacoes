@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "\..\config\bd\MySQL.php";
+require_once __DIR__ . "\..\..\config\db\MySQL.php";
 
 class Produto
 {
@@ -19,6 +19,20 @@ class Produto
         }
         return $conexao->executa($sql);
     }
+
+
+    public static function findComAvaliacao($id)
+    {
+        $conexao = new MySQL();
+        $sql = "SELECT * FROM produto p WHERE p.id = $id
+        JOIN avaliacao a on a.idProduto = produto.id";
+        $resultado = $conexao->consulta($sql);
+        // $u = new produto($resultado[0]['id'], $resultado[0]['nome'], $resultado[0]['descricao'], $resultado[0]['idEndereco']);
+        // $avaliacoes = [];
+        // $u->id = $resultado[0]['id'];
+        return $resultado;
+    }
+
 
     public static function delete($id)
     {

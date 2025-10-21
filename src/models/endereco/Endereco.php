@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "\..\config\bd\MySQL.php";
+require_once __DIR__ . "/../../config/db/MySQL.php";
 
 class Endereco
 {
@@ -36,6 +36,8 @@ class Endereco
         $u->id = $resultado[0]['id'];
         return $u;
     }
+
+
 
     public static function delete($id)
     {

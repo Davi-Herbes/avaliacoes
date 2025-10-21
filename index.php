@@ -1,8 +1,12 @@
 <?php
 require_once __DIR__ . "/src/utils/user_required.php";
+require_once __DIR__ . "/src/models/seguidores/seguidores.php";
 user_required();
 
 $user = $_SESSION["user"];
+$seguidores = Seguidores::findAllByUserID(3);
+
+// var_dump($seguidores);
 
 ?>
 
@@ -64,6 +68,23 @@ $user = $_SESSION["user"];
       </aside>
       <main class="home-main">
         <h1>Seguindo</h1>
+        <main class="home-main">
+          <h1>Seguindo</h1>
+
+          <?php if (empty($seguidores)): ?>
+            <p>Você não está seguindo nenhuma empresa.</p>
+          <?php else: ?>
+            <ul>
+              <?php foreach ($seguidores as $seguidor): ?>
+                <li>
+                  Empresa ID: <?= htmlspecialchars($seguidor->idEmpresa) ?> - Seguidor ID: <?= htmlspecialchars($seguidor->id) ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+
+        </main>
+
       </main>
     </section>
   </div>

@@ -5,11 +5,11 @@ require_once __DIR__ . "\Configuracao.php";
 class MySQL
 {
 
-  private $connection;
+  public $connection;
 
   public function __construct()
   {
-    $this->connection = new \mysqli(HOST, USUARIO, SENHA, BANCO, 3307);
+    $this->connection = new \mysqli(HOST, USUARIO, SENHA, BANCO, 3306);
     $this->connection->set_charset("utf8");
     mysqli_report(MYSQLI_REPORT_OFF);
   }

@@ -1,8 +1,14 @@
 <?php
 require_once __DIR__ . "/../../src/utils/user_required.php";
+require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
+require_once __DIR__ . "/../../src/models/endereco/Endereco.php";
+
 user_required();
 
 $user = $_SESSION["user"];
+$user_id = $user->id;
+$empresa = Empresa::findEmpresaByIdUsuario($user_id);
+
 
 ?>
 
@@ -63,7 +69,12 @@ $user = $_SESSION["user"];
         </nav>
       </aside>
       <main class="home-main">
-        <h1>Sua empresa</h1>
+        <h1>Sua empresa:</h1>
+        <p>ID do usuário: <?= $user_id ?></p>
+        <p>Nome da empresa: <?= $empresa->nome ?></p>
+        <p>ID do endereço: <?= $empresa->idEndereco ?></p>
+        <p>ID da empresa: <?= $empresa->id ?></p>
+
       </main>
     </section>
   </div>

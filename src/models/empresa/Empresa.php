@@ -1,20 +1,20 @@
 <?php
 
-require_once __DIR__ . "\Usuario.php";
-require_once __DIR__ . "\..\config\bd\MySQL.php";
+require_once __DIR__ . "/../usuario/Usuario.php";
+require_once __DIR__ . "/../../config/db/MySQL.php";
 
 class Empresa
 {
     public int $id;
 
-    public string $idUsuario;
-    public string $idEndereco;
+    public int $idUsuario;
+    public int $idEndereco;
 
     public function __construct(public string $nome = "")
     {
-        session_start();
+
         $usuario = $_SESSION["user"];
-        $this->idUsuario = $usuario["id"];
+        $this->idUsuario = $usuario->id;
     }
     public function save(): bool
     {
@@ -34,9 +34,22 @@ class Empresa
         $conexao = new MySQL();
         $sql = "SELECT * FROM empresa WHERE id = {$id}";
         $resultado = $conexao->consulta($sql);
-        $u = new empresa($resultado[0]['nome'], $resultado[0]['idUsuario'], $resultado[0]['idEndereco']);
+        $u = new Empresa($resultado[0]['nome'], $resultado[0]['idUsuario'], $resultado[0]['idEndereco']);
         $u->id = $resultado[0]['id'];
         return $u;
+    }
+
+    public static function findEmpresaByIdUsuario($idUsuario): Empresa
+    {
+        $conexao = new MySQL();
+        $sql = "SELECT * FROM empresa WHERE id = {$idUsuario}";
+        $resultado = $conexao->consulta($sql);
+        $u = new Empresa($resultado[0]['nome'], $resultado[0]['idUsuario'], $resultado[0]['idEndereco']);
+        $u->id = $resultado[0]['id'];
+        return $u;
+        if (empty($resultado)) {
+            throw new Exception("Nenhuma empresa encontrada para o usuário ID {$idUsuario}");
+        }
     }
 
     public static function delete($id)

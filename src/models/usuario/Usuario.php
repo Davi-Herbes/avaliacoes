@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "\..\..\config\db\MySQL.php";
+require_once __DIR__ . "/../../config/db/MySQL.php";
 
 class Usuario
 {
@@ -20,6 +20,7 @@ class Usuario
     }
     return $conexao->executa($sql);
   }
+
 
   public static function usuarioFromConsulta($resultado): Usuario
   {
