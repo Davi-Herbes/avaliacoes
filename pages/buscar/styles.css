@@ -1,0 +1,50 @@
+.search-section {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+}
+
+.search-form-container {
+
+}
+
+.search-form {
+  height: 100%;
+  width: 100%;
+
+}
+
+.search-form label {
+  height: 100%;
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.search-form input {
+  height: 70%;
+  width: 30%;
+
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+}
+
+.search-form button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.results-container {
+}
+
+label img {
+  height: 3vh;
+}

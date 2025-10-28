@@ -6,6 +6,14 @@ require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
 
 // $user = $_SESSION["user"];
 
+session_start();
+
+$empresas = $_SESSION["empresas"] ?? [];
+
+if(isset($_SESSION["empresas"])) {
+  unset($_SESSION["empresas"]);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +24,7 @@ require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buscar</title>
   <link rel="stylesheet" href="/avaliacoes/public/home.css">
+  <link rel="stylesheet" href="/avaliacoes/pages/buscar/styles.css">
 </head>
 
 <body>
@@ -65,17 +74,30 @@ require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
         </nav>
       </aside>
       <?php
-      $empresa = new Empresa("Empresa x", 1, 1);
-
 
       ?>
-      <main class="home-main">
-        <div class="empresa-card">
-          <h2 class="card-title">
-            <?php echo $empresa->nome ?>
-          </h2>
+      <section class="search-section">
+        <div class="search-form-container">
+          <form action="/avaliacoes/src/forms/search.php" class="search-form" method="POST">
+            <label for="search-input">
+              <input name="nome" type="text" placeholder="Pesquisar" id="search-input">
+              <button type="submit">
+                <img src="/avaliacoes/public/images/search.svg" alt="Lupa">
+              </button>
+            </label>
+          </form>
         </div>
-      </main>
+
+        <div class="results-container">
+          <?php foreach ($empresas as $empresa): ?>
+            <div class="empresa-card">
+              <h2><?= $empresa-> nome ?></h2>
+            </div>
+          <?php endforeach; ?>
+
+        </div>
+
+      </section>
     </section>
   </div>
 </body>

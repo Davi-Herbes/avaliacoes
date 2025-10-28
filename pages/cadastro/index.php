@@ -38,7 +38,7 @@ if (isset($_SESSION["validador"])) {
     </label>
     <button class="botao" type="submit">Enviar</button>
   </form>
-
+    <a link href="/avaliacoes/pages/login/">Já tem uma conta? Faça login</a>
 </body>
 
 </html>

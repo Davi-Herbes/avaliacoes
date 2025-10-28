@@ -26,7 +26,7 @@ if (isset($_GET["error"])) {
     <label for="senha">Senha: <input id="senha" name="senha" type="password"></label>
     <button class="botao" type="submit">Enviar</button>
   </form>
-
+  <a link href="/avaliacoes/pages/cadastro/">Não tem uma conta? Cadastre-se</a>
   <?php if ($with_error): ?>
     <p class="error-msg">Usuário ou senha errados</p>
   <?php endif; ?>

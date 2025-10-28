@@ -4,7 +4,7 @@ require_once __DIR__ . "/src/models/seguidores/seguidores.php";
 user_required();
 
 $user = $_SESSION["user"];
-$seguidores = Seguidores::findAllByUserID(3);
+$seguidores = Seguidores::findAllByUserID($user->id);
 
 // var_dump($seguidores);
 

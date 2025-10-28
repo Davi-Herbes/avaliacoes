@@ -7,8 +7,13 @@ require_once __DIR__ . "/../utils/navegar.php";
 session_start();
 
 $nome = $_POST["nome"];
+$id = $_POST["id"];
+$idUsuario = $_POST["idUsuario"];
+$idEndereco = $_POST["idEndereco"];
 
-$nome =  new Empresa($nome);
+$empresa =  new Empresa($nome, $idUsuario, $idEndereco);
+$empresa->id = $id;
+
 $validador = new ValidadorEmpresa($empresa);
 
 $validador->validar();
@@ -16,14 +21,14 @@ $validador->validar();
 
 if(!$validador->valido) {
     $_SESSION["validador"] = $validador;
-    navegar("/avaliacoes/pages/empresa");
+    navegar("/avaliacoes/pages/sua_empresa");
 }
 
-$user->save();
+$empresa->save();
 
-if (!$user) {
+if (!$empresa) {
     $_SESSION["validador"] = $validador;
-    navegar("/avaliacoes/pages/empresa");
+    navegar("/avaliacoes/pages/sua_empresa");
 }
 
-navegar("/avaliacoes");
+navegar("/avaliacoes/pages/sua_empresa");

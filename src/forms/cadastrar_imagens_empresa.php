@@ -7,8 +7,11 @@ require_once __DIR__ . "/../utils/navegar.php";
 session_start();
 
 $nome = $_POST["nome"];
+$nome = $_POST["nome"];
+$idUsuario = $_POST["idUsuario"];
+$idEndereco = $_POST["idEndereco"];
 
-$nome =  new Empresa($nome);
+$empresa =  new Empresa($nome, $idUsuario, $idEndereco);
 $validador = new ValidadorEmpresa($empresa);
 
 $validador->validar();

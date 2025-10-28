@@ -45,7 +45,6 @@ class Seguidores
     foreach ($resultado as $linha) {
         $u = new seguidores($linha['idUsuario'], $linha['idEmpresa']);
         $u->id = $linha['id'];
-        $u->nomeEmpresa = $linha['nomeEmpresa'];
         $seguidores[] = $u;
     }
 

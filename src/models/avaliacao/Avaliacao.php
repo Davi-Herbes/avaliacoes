@@ -3,13 +3,13 @@
 require_once __DIR__ . "\Usuario.php";
 require_once __DIR__ . "\..\config\db\MySQL.php";
 
-class Avaliacao
+class AvaliacaoEmpresa
 {
 
     public int $id;
     public int $idUsuario;
 
-    public function __construct(public string $nota = "",  public string $comentario = "", public string $idProduto = "")
+    public function __construct(public int $nota,  public string $comentario = "", public int $idEmpresa)
     {
         session_start();
         $usuario = $_SESSION["user"];
@@ -20,20 +20,33 @@ class Avaliacao
     {
         $conexao = new MySQL();
         if (isset($this->id)) {
-            $sql = "UPDATE avaliacao SET idUsuario = '{$this->idUsuario}' , nota = '{$this->nota}', comentario = '{$this->comentario}', idProduto = '{$this->idProduto}' WHERE id = {$this->id}";
+            $sql = "UPDATE avaliacao_empresa SET idUsuario = {$this->idUsuario} , nota = {$this->nota}, comentario = '{$this->comentario}', id_empresa = {$this->idEmpresa} WHERE id = {$this->id}";
         } else {
-            $sql = "INSERT INTO avaliacao (idUsuario, nota, comentario, idProduto)
-             VALUES ('{$this->idUsuario}','{$this->nota}', '{$this->comentario}', '{$this->idProduto}')";
+            $sql = "INSERT INTO avaliacao_empresa (idUsuario, nota, comentario, id_empresa)
+             VALUES ({$this->idUsuario},{$this->nota}, '{$this->comentario}', {$this->idEmpresa})";
         }
-        return $conexao->executa($sql);
+       $resultado = $conexao->executa($sql);
+
+              // cria novo sql pra update na coluna avaliacao na tabela empresa com $conexao->executa($sql);
+        $sql = "UPDATE empresa e
+        SET e.avaliacao = (
+        SELECT ROUND(AVG(a.nota), 2)
+        FROM avaliacao_empresa a
+        WHERE a.id_empresa = e.id
+    );
+";
+
+        $conexao->executa($sql);
+        return $resultado;
+
     }
 
-    public static function find($id): Avaliacao
+    public static function find($id): AvaliacaoEmpresa
     {
         $conexao = new MySQL();
-        $sql = "SELECT * FROM avaliacao WHERE id = {$id}";
+        $sql = "SELECT * FROM avaliacao_empresa WHERE id = {$id}";
         $resultado = $conexao->consulta($sql);
-        $u = new Avaliacao($resultado[0]['idUsuario'], $resultado[0]['nota'], $resultado[0]['comentario'], $resultado[0]['idProduto']);
+        $u = new AvaliacaoEmpresa($resultado[0]['idUsuario'], $resultado[0]['nota'], $resultado[0]['comentario'], $resultado[0]['id_empresa']);
         $u->id = $resultado[0]['idUsuario'];
         return $u;
     }
@@ -41,7 +54,7 @@ class Avaliacao
     public static function delete($id)
     {
         $conexao = new MySQL();
-        $sql = "DELETE FROM avaliacao WHERE id = {$id}";
+        $sql = "DELETE FROM avaliacao_empresa WHERE id = {$id}";
         $resultado = $conexao->executa($sql);
         return $resultado;
     }

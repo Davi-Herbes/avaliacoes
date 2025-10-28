@@ -6,7 +6,7 @@ class ValidadorEmpresa extends Validador
 {
   public $erro_nome = "";
 
-  public function __construct(private Empresa $empresa = new Empresa()) {}
+  public function __construct(private Empresa $empresa) {}
 
   public function validar()
   {
@@ -21,7 +21,7 @@ class ValidadorEmpresa extends Validador
   private function validar_nome()
   {
     $nome = $this->empresa->nome;
-    $this->validate_range($nome, "Nome", $this->erro_nome);
+    $this->validate_string($nome, "Nome", $this->erro_nome);
   }
 
 }

@@ -17,7 +17,11 @@ class MySQL
   public function executa($sql)
   {
     $result = $this->connection->query($sql);
-    return $result;
+    if(!$result) {
+      return $result;
+    };
+
+    return $this->connection->insert_id;
   }
   public function consulta($sql)
   {

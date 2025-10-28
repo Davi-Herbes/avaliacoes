@@ -4,12 +4,11 @@ require_once __DIR__ . "/../../config/db/MySQL.php";
 
 class Endereco
 {
-
     public int $id;
 
     public function __construct(
         public string $rua = "",
-        public int $numero = 0,
+        public int|null $numero = null,
         public string $cidade = "",
         public string $cep = "",
         public string $estado = "",
@@ -19,10 +18,14 @@ class Endereco
     public function save(): bool
     {
         $conexao = new MySQL();
+        
+        $numero = is_null($this->numero) ? 'NULL' : "'{$this->numero}'";
         if (isset($this->id)) {
-            $sql = "UPDATE endereco SET rua = '{$this->rua}', numero = '{$this->numero}', cidade = '{$this->cidade}', cep = '{$this->cep}', estado = '{$this->estado}', pais = '{$this->pais}' WHERE id = {$this->id}";
+            $sql = "UPDATE endereco SET rua = '{$this->rua}', numero = '{$numero}', cidade = '{$this->cidade}', cep = '{$this->cep}', estado = '{$this->estado}',
+             pais = '{$this->pais}' WHERE id = {$this->id}";
         } else {
-            $sql = "INSERT INTO endereco (rua, numero, cidade, cep, estado, pais) VALUES ('{$this->rua}','{$this->numero}','{$this->cidade}' ,'{$this->cep}','{$this->estado}', '{$this->pais}')";
+            $sql = "INSERT INTO endereco (rua, numero, cidade, cep, estado, pais) VALUES ('{$this->rua}','{$numero}','{$this->cidade}' ,'{$this->cep}','{$this->estado}',
+             '{$this->pais}')";
         }
         return $conexao->executa($sql);
     }
