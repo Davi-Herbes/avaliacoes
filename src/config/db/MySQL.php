@@ -9,9 +9,9 @@ class MySQL
 
   public function __construct()
   {
+    mysqli_report(MYSQLI_REPORT_OFF);
     $this->connection = new \mysqli(HOST, USUARIO, SENHA, BANCO, 3306);
     $this->connection->set_charset("utf8");
-    mysqli_report(MYSQLI_REPORT_OFF);
   }
 
   public function executa($sql)

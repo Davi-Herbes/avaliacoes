@@ -32,7 +32,8 @@ class Endereco
         $conexao = new MySQL();
         $sql = "SELECT * FROM endereco WHERE id = {$id}";
         $resultado = $conexao->consulta($sql);
-        $u = new Endereco($resultado[0]['rua'], $resultado[0]['numero'], $resultado[0]['cidade'], $resultado[0]['cep'], $resultado[0]['rua'], $resultado[0]['numero']);
+
+        $u = new Endereco($resultado[0]['rua'], $resultado[0]['numero'], $resultado[0]['cidade'], $resultado[0]['cep'], $resultado[0]['estado'], $resultado[0]['pais']);
         $u->id = $resultado[0]['id'];
         return $u;
     }

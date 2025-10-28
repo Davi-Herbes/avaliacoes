@@ -2,9 +2,9 @@
 require_once __DIR__ . "/../../src/utils/user_required.php";
 require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
 
-user_required();
+// user_required();
 
-$user = $_SESSION["user"];
+// $user = $_SESSION["user"];
 
 ?>
 
@@ -65,9 +65,7 @@ $user = $_SESSION["user"];
         </nav>
       </aside>
       <?php
-      $empresa = new Empresa("Empresa x");
-      $empresa->idEndereco = 1;
-      $empresa->id = 1;
+      $empresa = new Empresa("Empresa x", 1, 1);
 
 
       ?>

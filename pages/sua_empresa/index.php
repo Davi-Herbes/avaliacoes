@@ -8,6 +8,8 @@ user_required();
 $user = $_SESSION["user"];
 $user_id = $user->id;
 $empresa = Empresa::findEmpresaByIdUsuario($user_id);
+$endereco = Endereco::find($empresa->idEndereco);
+
 
 
 ?>
@@ -70,10 +72,27 @@ $empresa = Empresa::findEmpresaByIdUsuario($user_id);
       </aside>
       <main class="home-main">
         <h1>Sua empresa:</h1>
+<<<<<<< HEAD
         <p>ID do usuário: <?= $user_id ?></p>
         <p>Nome da empresa: <?= $empresa->nome ?></p>
         <p>ID do endereço: <?= $empresa->idEndereco ?></p>
         <p>ID da empresa: <?= $empresa->id ?></p>
+=======
+
+        
+        <!-- <p>ID do usuário: <?= $user_id ?></p> -->
+        <p>Nome do usuário: <?= $user->nome ?></p>
+        <p>Email do usuário: <?= $user->email ?></p>
+        <p>Nome da empresa: <?= $empresa->nome ?></p>
+        <p>Rua da empresa: <?= $endereco->rua ?></p>
+        <p>Número da empresa: <?= $endereco->numero ?></p>
+        <p>Cidade da empresa: <?= $endereco->cidade ?></p>
+        <p>Estado da empresa: <?= $endereco->estado ?></p>
+        <p>CEP da empresa: <?= $endereco->cep ?></p>
+        <p>País da empresa: <?= $endereco->pais ?></p>
+        <!-- <p>ID do endereço: <?= $empresa->idEndereco ?></p> -->
+        <!-- <p>ID da empresa: <?= $empresa->id ?></p> -->
+>>>>>>> 35553ed (27102025)
 
       </main>
     </section>

@@ -7,10 +7,12 @@ class Empresa
 {
     public int $id;
 
+<<<<<<< HEAD
     public int $idUsuario;
     public int $idEndereco;
 
-    public function __construct(public string $nome = "")
+    public function __construct(public string $nome = "", public int $idUsuario, public int $idEndereco)
+
     {
 
         $usuario = $_SESSION["user"];

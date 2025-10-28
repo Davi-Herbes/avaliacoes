@@ -69,7 +69,6 @@ $seguidores = Seguidores::findAllByUserID(3);
       <main class="home-main">
         <h1>Seguindo</h1>
         <main class="home-main">
-          <h1>Seguindo</h1>
 
           <?php if (empty($seguidores)): ?>
             <p>Você não está seguindo nenhuma empresa.</p>
