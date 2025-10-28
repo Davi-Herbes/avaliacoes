@@ -72,12 +72,6 @@ $endereco = Endereco::find($empresa->idEndereco);
       </aside>
       <main class="home-main">
         <h1>Sua empresa:</h1>
-<<<<<<< HEAD
-        <p>ID do usuário: <?= $user_id ?></p>
-        <p>Nome da empresa: <?= $empresa->nome ?></p>
-        <p>ID do endereço: <?= $empresa->idEndereco ?></p>
-        <p>ID da empresa: <?= $empresa->id ?></p>
-=======
 
         
         <!-- <p>ID do usuário: <?= $user_id ?></p> -->
@@ -92,7 +86,6 @@ $endereco = Endereco::find($empresa->idEndereco);
         <p>País da empresa: <?= $endereco->pais ?></p>
         <!-- <p>ID do endereço: <?= $empresa->idEndereco ?></p> -->
         <!-- <p>ID da empresa: <?= $empresa->id ?></p> -->
->>>>>>> 35553ed (27102025)
 
       </main>
     </section>
