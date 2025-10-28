@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/src/utils/user_required.php";
 require_once __DIR__ . "/src/models/seguidores/seguidores.php";
+session_start();
 user_required();
 
 $user = $_SESSION["user"];

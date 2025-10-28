@@ -6,11 +6,10 @@ require_once __DIR__ . "/../../src/models/empresa/Empresa.php";
 
 // $user = $_SESSION["user"];
 
-session_start();
 
 $empresas = $_SESSION["empresas"] ?? [];
 
-if(isset($_SESSION["empresas"])) {
+if (isset($_SESSION["empresas"])) {
   unset($_SESSION["empresas"]);
 }
 
@@ -90,9 +89,15 @@ if(isset($_SESSION["empresas"])) {
 
         <div class="results-container">
           <?php foreach ($empresas as $empresa): ?>
-            <div class="empresa-card">
-              <h2><?= $empresa-> nome ?></h2>
-            </div>
+            <a href="/avaliacoes/pages/empresa?id=<?= $empresa["empresa"]->id ?>" class="empresa-card">
+              <div class="card-header">
+                <h2><?= $empresa["empresa"]->nome ?></h2>
+                <span class="avaliacao"><?= $empresa["empresa"]->avaliacao_media ?></span><span class="avaliacao-maxima">/10<span>
+              </div>
+              <div class="card-images">
+                <img src="<?= $empresa["imagens"][0]->caminho ?>" alt="Imagem empresa">
+              </div>
+            </a>
           <?php endforeach; ?>
 
         </div>

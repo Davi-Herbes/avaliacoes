@@ -22,48 +22,46 @@ class ValidadorEndereco extends Validador
     $this->validar_cep();
     $this->validar_estado();
     $this->validar_pais();
-
   }
 
   private function validar_rua()
   {
+
     $rua = $this->endereco->rua;
     $this->validate_range($rua, "rua", $this->erro_rua);
   }
 
   private function validar_numero()
   {
+
     $numero = $this->endereco->numero;
     $this->validate_int($numero, "numero", $this->erro_numero);
   }
 
-    private function validar_cidade()
+  private function validar_cidade()
   {
+
     $cidade = $this->endereco->cidade;
     $this->validate_range($cidade, "cidade", $this->erro_cidade);
   }
-    private function validar_cep()
+  private function validar_cep()
   {
-        $cep = $this->endereco->cep;
-      if (!$cep) {
-      $erro = "O campo CEP é obrigatório.";
-      $this->valido = false;
-    } else if (strlen($cep) != 9) {
-      $erro = "O campo CEP deve ter 9 dígitos e deve ter padrão: xxxxx-xxx.";
-      $this->valido = false;
-    }
+
+    $cep = $this->endereco->cep;
+    $this->validate_cep($cep, "Cep", $this->erro_cep);
   }
 
   private function validar_estado()
   {
+
     $estado = $this->endereco->estado;
     $this->validate_range($estado, "estado", $this->erro_estado);
   }
 
-    private function validar_pais()
+  private function validar_pais()
   {
+
     $pais = $this->endereco->pais;
     $this->validate_range($pais, "pais", $this->erro_pais);
   }
-
 }

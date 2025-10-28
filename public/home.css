@@ -16,7 +16,7 @@
 
 .home-section {
   background: linear-gradient(45deg, #ffffff, #b8bcc0);
-  height: 90vh;
+  min-height: 90vh;
 }
 
 ul {

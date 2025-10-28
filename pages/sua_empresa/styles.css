@@ -1,0 +1,27 @@
+.error-msg {
+  color: red;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}
+label {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  width: 13vw;
+}
+
+.img-button {
+  /* border: none */
+  cursor: pointer;
+}
+.home-main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

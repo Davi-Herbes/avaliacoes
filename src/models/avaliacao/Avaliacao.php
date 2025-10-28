@@ -25,20 +25,7 @@ class AvaliacaoEmpresa
             $sql = "INSERT INTO avaliacao_empresa (idUsuario, nota, comentario, id_empresa)
              VALUES ({$this->idUsuario},{$this->nota}, '{$this->comentario}', {$this->idEmpresa})";
         }
-       $resultado = $conexao->executa($sql);
-
-              // cria novo sql pra update na coluna avaliacao na tabela empresa com $conexao->executa($sql);
-        $sql = "UPDATE empresa e
-        SET e.avaliacao = (
-        SELECT ROUND(AVG(a.nota), 2)
-        FROM avaliacao_empresa a
-        WHERE a.id_empresa = e.id
-    );
-";
-
-        $conexao->executa($sql);
-        return $resultado;
-
+       return $conexao->executa($sql);
     }
 
     public static function find($id): AvaliacaoEmpresa

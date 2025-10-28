@@ -22,6 +22,14 @@ class Validador
     }
   }
 
+  public function validate_cep(string $valor_campo, string $nome_campo, string &$erro)
+  {
+
+    if (strlen($valor_campo) < 8 && strlen($valor_campo) > 9) {
+      $erro = "$nome_campo inválido.";
+      $this->valido = false;
+    }
+  }
 
   public function validate_chars(string $valor_campo, string $nome_campo, string &$erro)
   {
@@ -41,7 +49,7 @@ class Validador
 
   public function validate_int($valor_campo, string $nome_campo, string &$erro)
   {
-    if (gettype($valor_campo) !== "int") {
+    if (gettype($valor_campo) !== "integer") {
       $erro = "O campo $nome_campo é obrigatório.";
       $this->valido = false;
     }
