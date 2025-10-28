@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../models/imagens_empresa/imagens_empresa.php";
 require_once __DIR__ . "/../utils/navegar.php";
 
+
 $pasta_upload = __DIR__ . "/../../uploads/";
 
 
@@ -13,8 +14,10 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
   $nome_arquivo = $_FILES['file']['name'];
   $arquivo_tmp = $_FILES['file']['tmp_name'];
 
+$nome_arquivo_upado = time() . '_' . basename($nome_arquivo);
+$caminho = "/avaliacoes/uploads/".$nome_arquivo_upado;
   // Caminho final do arquivo
-  $destino = $pasta_upload . time() . '_' . basename($nome_arquivo);
+  $destino = $pasta_upload . $nome_arquivo_upado;
 
   // Move o arquivo da pasta temporária para a pasta final
   if (move_uploaded_file($arquivo_tmp, $destino)) {
