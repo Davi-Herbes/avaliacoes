@@ -34,6 +34,7 @@ class Empresa
     $sql = "SELECT * FROM empresa WHERE id = {$id}";
     $resultado = $conexao->consulta($sql);
     $u = new Empresa($resultado[0]['nome'], $resultado[0]['idUsuario'], $resultado[0]['IdEndereco']);
+    $u->avaliacao_media = $resultado[0]['avaliacao_media'];
     $u->id = $resultado[0]['id'];
     return $u;
   }
@@ -59,6 +60,7 @@ class Empresa
         var_dump($empresa_raw);
         $empresa = new Empresa($empresa_raw["nome"], $empresa_raw["idUsuario"], $empresa_raw["IdEndereco"]);
         $empresa->id =  $empresa_id;
+        $empresa->avaliacao_media =  $empresa_raw["avaliacao_media"];
         $empresas[$empresa_id]["empresa"] = $empresa;
       }
 
@@ -81,7 +83,33 @@ class Empresa
 
     $u = new Empresa($resultado[0]['nome'], (int) $resultado[0]['idUsuario'], (int) $resultado[0]['IdEndereco']);
     $u->id = $resultado[0]['id'];
+    $u->avaliacao_media = $resultado[0]['avaliacao_media'];
     return $u;
+  }
+
+  public static function findEmpresasByIdUsuario($idUsuario)
+  {
+    $conexao = new MySQL();
+
+    $sql = "
+        SELECT s.*, e.nome AS nomeEmpresa
+        FROM seguidores s
+        JOIN empresa e ON s.idEmpresa = e.id
+        WHERE s.idUsuario = {$idUsuario};
+    ";
+
+    $resultado = $conexao->consulta($sql);
+
+    $empresas = [];
+
+    foreach ($resultado as $linha) {
+      $u = new Empresa($linha['nome'], $linha['idUsuario'], $linha['idEndereco']);
+      $u->id = $linha['id'];
+      $u->avaliacao_media = $resultado[0]['avaliacao_media'];
+      $empresas[] = $u;
+    }
+
+    return $empresas;
   }
 
 

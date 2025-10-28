@@ -15,7 +15,7 @@
 }
 
 .home-section {
-  background: linear-gradient(45deg, #ffffff, #b8bcc0);
+  background: linear-gradient(45deg, #ffffff, #d3d6da);
   min-height: 90vh;
 }
 
@@ -45,11 +45,13 @@ a {
   justify-content: center;
   align-items: center;
   text-align: center;
+  max-height: 90vh;
 }
 
 .home-aside img {
   height: 6vh;
 }
+
 .home-aside nav ul li {
   width: 100%;
   padding: 1vh 0;

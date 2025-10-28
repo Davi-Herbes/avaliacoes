@@ -28,28 +28,28 @@ class Seguidores
 
     // $seguidores = Seguidores::findAllByUserID();
     public static function findAllByUserID(string $idUsuario)
-{
-    $conexao = new MySQL();
+    {
+        $conexao = new MySQL();
 
-    $sql = "
+        $sql = "
         SELECT s.*, e.nome AS nomeEmpresa
         FROM seguidores s
         JOIN empresa e ON s.idEmpresa = e.id
         WHERE s.idUsuario = {$idUsuario};
     ";
 
-    $resultado = $conexao->consulta($sql);
+        $resultado = $conexao->consulta($sql);
 
-    $seguidores = [];
+        $seguidores = [];
 
-    foreach ($resultado as $linha) {
-        $u = new seguidores($linha['idUsuario'], $linha['idEmpresa']);
-        $u->id = $linha['id'];
-        $seguidores[] = $u;
+        foreach ($resultado as $linha) {
+            $u = new seguidores($linha['idUsuario'], $linha['idEmpresa']);
+            $u->id = $linha['id'];
+            $seguidores[] = $u;
+        }
+
+        return $seguidores;
     }
-
-    return $seguidores;
-}
 
     public static function delete($id)
     {

@@ -1,24 +1,30 @@
 <?php
 require_once __DIR__ . "/src/utils/user_required.php";
-require_once __DIR__ . "/src/models/seguidores/seguidores.php";
+require_once __DIR__ . "/src/models/empresa/Empresa.php";
+
+// user_required();
+
+// $user = $_SESSION["user"];
+
 session_start();
-user_required();
 
-$user = $_SESSION["user"];
-$seguidores = Seguidores::findAllByUserID($user->id);
+$empresas = $_SESSION["empresas"] ?? [];
 
-// var_dump($seguidores);
+if (isset($_SESSION["empresas"])) {
+  unset($_SESSION["empresas"]);
+}
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Buscar</title>
   <link rel="stylesheet" href="/avaliacoes/public/home.css">
+  <link rel="stylesheet" href="/avaliacoes/pages/buscar/styles.css">
 </head>
 
 <body>
@@ -40,16 +46,16 @@ $seguidores = Seguidores::findAllByUserID($user->id);
       <aside class="home-aside">
         <nav>
           <ul>
-            <li class="selected">
+            <!-- <li>
               <a href="/avaliacoes/">
                 <figure>
                   <img src="/avaliacoes/public/images/home-icon.svg" alt="Ícone seguindo">
                   <figcaption>Seguindo</figcaption>
                 </figure>
               </a>
-            </li>
-            <li>
-              <a href="/avaliacoes/pages/buscar/">
+            </li> -->
+            <li class="selected">
+              <a href="/avaliacoes//">
                 <figure>
                   <img src="/avaliacoes/public/images/search.svg" alt="Ícone busca">
                   <figcaption>Buscar empresas</figcaption>
@@ -67,25 +73,37 @@ $seguidores = Seguidores::findAllByUserID($user->id);
           </ul>
         </nav>
       </aside>
-      <main class="home-main">
-        <h1>Seguindo</h1>
-        <main class="home-main">
+      <?php
 
-          <?php if (empty($seguidores)): ?>
-            <p>Você não está seguindo nenhuma empresa.</p>
-          <?php else: ?>
-            <ul>
-              <?php foreach ($seguidores as $seguidor): ?>
-                <li>
-                  Empresa ID: <?= htmlspecialchars($seguidor->idEmpresa) ?> - Seguidor ID: <?= htmlspecialchars($seguidor->id) ?>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-          <?php endif; ?>
+      ?>
+      <section class="search-section">
+        <div class="search-form-container">
+          <form action="/avaliacoes/src/forms/search.php" class="search-form" method="POST">
+            <label for="search-input">
+              <input name="nome" type="text" placeholder="Pesquisar" id="search-input">
+              <button type="submit">
+                <img src="/avaliacoes/public/images/search.svg" alt="Lupa">
+              </button>
+            </label>
+          </form>
+        </div>
 
-        </main>
+        <div class="results-container">
+          <?php foreach ($empresas as $empresa): ?>
+            <a href="/avaliacoes/pages/empresa?id=<?= $empresa["empresa"]->id ?>" class="empresa-card">
+              <div class="card-header">
+                <h2><?= $empresa["empresa"]->nome ?></h2>
+                <span class="avaliacao"><?= $empresa["empresa"]->avaliacao_media ?></span><span class="avaliacao-maxima">/10<span>
+              </div>
+              <div class="card-images">
+                <img src="<?= $empresa["imagens"][0]->caminho ?>" alt="Imagem empresa">
+              </div>
+            </a>
+          <?php endforeach; ?>
 
-      </main>
+        </div>
+
+      </section>
     </section>
   </div>
 </body>

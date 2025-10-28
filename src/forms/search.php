@@ -11,4 +11,4 @@ $empresas =  Empresa::searchByName($nome);
 
 
 $_SESSION["empresas"] = $empresas;
-navegar("/avaliacoes/pages/buscar");
+navegar("/avaliacoes/");

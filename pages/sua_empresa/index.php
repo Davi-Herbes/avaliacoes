@@ -63,16 +63,16 @@ if (isset($_SESSION["validador_empresa"])) {
       <aside class="home-aside">
         <nav>
           <ul>
-            <li>
+            <!-- <li>
               <a href="/avaliacoes/">
                 <figure>
                   <img src="/avaliacoes/public/images/home-icon.svg" alt="Ícone seguindo">
                   <figcaption>Seguindo</figcaption>
                 </figure>
               </a>
-            </li>
+            </li> -->
             <li>
-              <a href="/avaliacoes/pages/buscar/">
+              <a href="/avaliacoes/">
                 <figure>
                   <img src="/avaliacoes/public/images/search.svg" alt="Ícone busca">
                   <figcaption>Buscar empresas</figcaption>

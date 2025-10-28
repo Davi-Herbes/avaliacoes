@@ -1,0 +1,48 @@
+.avaliacao-maxima {
+    font-size: 2vh;
+    font-weight: 600;
+}
+
+.empresa-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.avaliacoes-container {
+    display: grid;
+    grid-template-rows: 2fr 4fr 7fr;
+    max-height: 90vh;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+
+    gap: 1vw;
+    padding-left: 5vw;
+}
+
+h1 {
+    font-size: 6vh;
+}
+
+button.seguir {
+    border: none;
+    background: rgb(255, 78, 34);
+    color: #fff;
+    height: 4vh;
+    font-size: 2vh;
+    border-radius: 3px;
+    padding: 0 1vh;
+    cursor: pointer;
+    ;
+    align-content: center;
+    text-align: center;
+}
+
+.avaliar button {
+    cursor: pointer;
+    border: none;
+    padding: 0 1vh;
+    font-size: 2vh;
+}
