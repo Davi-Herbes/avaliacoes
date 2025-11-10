@@ -1,28 +1,24 @@
 <?php
 require_once __DIR__ . "/src/utils/user_required.php";
+require_once __DIR__ . "/src/models/seguidores/seguidores.php";
 require_once __DIR__ . "/src/models/empresa/Empresa.php";
 
-// user_required();
-
-// $user = $_SESSION["user"];
-
 session_start();
+user_required();
 
-$empresas = $_SESSION["empresas"] ?? [];
+$user = $_SESSION["user"];
+$seguidores = Seguidores::findAllByUserID($user->id);
 
-if (isset($_SESSION["empresas"])) {
-  unset($_SESSION["empresas"]);
-}
 
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buscar</title>
+  <title>Document</title>
   <link rel="stylesheet" href="/avaliacoes/public/home.css">
   <link rel="stylesheet" href="/avaliacoes/pages/buscar/styles.css">
 </head>
@@ -46,16 +42,16 @@ if (isset($_SESSION["empresas"])) {
       <aside class="home-aside">
         <nav>
           <ul>
-            <!-- <li>
+            <li class="selected">
               <a href="/avaliacoes/">
                 <figure>
                   <img src="/avaliacoes/public/images/home-icon.svg" alt="Ícone seguindo">
                   <figcaption>Seguindo</figcaption>
                 </figure>
               </a>
-            </li> -->
-            <li class="selected">
-              <a href="/avaliacoes//">
+            </li>
+            <li>
+              <a href="/avaliacoes/pages/buscar/">
                 <figure>
                   <img src="/avaliacoes/public/images/search.svg" alt="Ícone busca">
                   <figcaption>Buscar empresas</figcaption>
@@ -73,9 +69,6 @@ if (isset($_SESSION["empresas"])) {
           </ul>
         </nav>
       </aside>
-      <?php
-
-      ?>
       <section class="search-section">
         <div class="search-form-container">
           <form action="/avaliacoes/src/forms/search.php" class="search-form" method="POST">
@@ -104,6 +97,8 @@ if (isset($_SESSION["empresas"])) {
         </div>
 
       </section>
+
+      </main>
     </section>
   </div>
 </body>
